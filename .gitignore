@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Environments
+.env
+
+# IDE
+.idea/
+/coverage
+
+# MISC
+yarn-error.log
+
+# Database
+/data
+
+# Build
+/dist
