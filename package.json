@@ -6,10 +6,20 @@
     "dev": "nodemon ./src/app.ts",
     "start": "node ./dist/app.js",
     "build": "yarn build:clean && tsc",
-    "build:clean": "rm -rf ./dist/*"
+    "build:clean": "rm -rf ./dist/*",
+    "eslint": "eslint ./src",
+    "migrate:up": "sequelize-cli db:migrate",
+    "migrate:down": "sequelize-cli db:migrate:undo --to",
+    "migrate:down:all": "sequelize-cli db:migrate:undo:all"
   },
   "dependencies": {
+    "@types/node": "^16.11.10",
+    "@types/validator": "^13.7.0",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "pg": "^8.7.1",
+    "sequelize": "^6.12.0-alpha.1",
+    "sequelize-cli": "^6.3.0",
     "typescript": "^4.5.2"
   },
   "devDependencies": {
