@@ -1,8 +1,13 @@
+import './config/dotenv.config';
 import express from 'express';
 import { sequelize } from './database/config/db-connection';
+import router from './config/router.config';
 
 const app: any = express();
-const port: number = 6540;
+const port: number = +process.env.PORT || 6540;
+
+// Inject All Routers
+router(app);
 
 console.info('Running Database Connection Tests...');
 sequelize.authenticate().then(() => {
