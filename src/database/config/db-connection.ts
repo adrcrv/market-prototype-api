@@ -2,40 +2,51 @@ import fs from 'fs';
 import path from 'path';
 import { Sequelize, Op } from 'sequelize';
 
-const config: object = require('./database');
+const config = require('./database');
 
-const db: any = {};
-const modelDir: string = path.join(__dirname, '../models');
-const modelFiles: string[] = fs.readdirSync(modelDir);
-const sequelize: any = new Sequelize(config);
+class DbConnection {
+  private modelDir: string;
+  private modelFiles: string[];
 
-function castDirectoryFiles(): string[] {
-  return modelFiles.filter((file: string) => {
-    const hasNotDot: boolean = file.indexOf('.') !== 0;
-    const isNotBaseName: boolean = file !== modelDir;
-    const isJsFormat: boolean = file.slice(-3) === '.ts';
-    return hasNotDot && isNotBaseName && isJsFormat;
-  });
-}
+  public db: any = {};
+  public sequelize: any;
 
-async function dynamicModelImportHandler(file: string) {
-  const { default: modelFile }: any = await import(path.join(modelDir, file));
-  const model: any = modelFile(sequelize);
-  db[model.name] = model;
-}
+  public constructor() {
+    this.db = {};
+    this.modelDir = path.join(__dirname, '../models');
+    this.modelFiles = fs.readdirSync(this.modelDir);
+    this.sequelize = new Sequelize(config);
+    this.dynamicModelImport();
+  }
 
-function dynamicModelAssociateHandler(modelName: string) {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
+  private dynamicModelImport() {
+    const castedDirectoryFiles: string[] = this.castDirectoryFiles();
+    castedDirectoryFiles.forEach(this.dynamicModelImportHandler.bind(this));
+    const modelsKeys: string[] = Object.keys(this.db);
+    modelsKeys.forEach(this.dynamicModelAssociateHandler);
+  }
+
+  private castDirectoryFiles(): string[] {
+    return this.modelFiles.filter((file: string) => {
+      const hasNotDot: boolean = file.indexOf('.') !== 0;
+      const isNotBaseName: boolean = file !== this.modelDir;
+      const isJsFormat: boolean = file.slice(-3) === '.ts';
+      return hasNotDot && isNotBaseName && isJsFormat;
+    });
+  }
+
+  private async dynamicModelImportHandler(file: string) {
+    const { default: modelFile }: any = await import(path.join(this.modelDir, file));
+    const model: any = modelFile(this.sequelize);
+    this.db[model.name] = model;
+  }
+
+  private dynamicModelAssociateHandler(modelName: string) {
+    if (this.db[modelName].associate) {
+      this.db[modelName].associate(this.db);
+    }
   }
 }
 
-// Dynamic Model Import
-const castedDirectoryFiles: string[] = castDirectoryFiles();
-castedDirectoryFiles.forEach(dynamicModelImportHandler);
-const modelsKeys: string[] = Object.keys(db);
-modelsKeys.forEach(dynamicModelAssociateHandler);
-
-export {
-  sequelize, Sequelize, Op, db,
-};
+const { db, sequelize } = new DbConnection();
+export { db, sequelize, Sequelize, Op };
