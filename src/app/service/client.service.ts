@@ -11,4 +11,8 @@ export default class ClientService {
   public findAll(): Client[] {
     return this.clientRepository.findAll();
   }
+
+  public findById(id: number): Client {
+    return this.clientRepository.findById(id);
+  }
 }

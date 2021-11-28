@@ -1,6 +1,12 @@
-const express = {
+const jsonMethod: object = jest.fn();
+const statusMethod: object = jest.fn(() => ({ json: jsonMethod }));
+
+const express: object = {
   req: {},
-  res: { json: (payload) => payload },
+  res: {
+    status: statusMethod,
+    json: jsonMethod,
+  },
 };
 
 export default express;

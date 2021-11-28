@@ -11,4 +11,8 @@ export default class ClientRepository {
   public findAll(): Client[] {
     return this.client.findAll();
   }
+
+  public findById(id: number): Client {
+    return this.client.findOne({ where: { id } });
+  }
 }
