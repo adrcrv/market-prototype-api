@@ -4,7 +4,7 @@ import ClientRepository from '../repository/client.repository';
 export default class ClientService {
   private clientRepository: ClientRepository;
 
-  constructor() {
+  public constructor() {
     this.clientRepository = new ClientRepository();
   }
 

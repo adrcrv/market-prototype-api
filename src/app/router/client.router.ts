@@ -1,6 +1,8 @@
+import { Application } from 'express';
 import ClientController from '../controller/client.controller';
 
-export default function clientRouter(app) {
-  const clientController = new ClientController();
-  app.get('/api/clients', clientController.findAllClients.bind(clientController));
+export default class ClientRouter {
+  public static inject(app: Application): void {
+    app.get('/api/clients', ClientController.findAllClients);
+  }
 }

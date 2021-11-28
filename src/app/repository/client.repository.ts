@@ -2,13 +2,13 @@ import { db } from '../../database/config/db-connection';
 import { Client } from '../../database/entities/client';
 
 export default class ClientRepository {
-  private ClientModel;
+  private client;
 
-  constructor() {
-    this.ClientModel = db.Client;
+  public constructor() {
+    this.client = db.Client;
   }
 
   public findAll(): Client[] {
-    return this.ClientModel.findAll();
+    return this.client.findAll();
   }
 }

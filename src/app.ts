@@ -1,17 +1,29 @@
 import './config/dotenv.config';
-import express from 'express';
+import express, { Application } from 'express';
 import { sequelize } from './database/config/db-connection';
-import router from './config/router.config';
+import ClientRouter from './app/router/client.router';
 
-const app: any = express();
-const port: number = +process.env.PORT || 6540;
+class App {
+  private app: Application = express();
+  private port: number = +process.env.PORT || 6540;
 
-// Inject All Routers
-router(app);
+  public constructor() {
+    this.routerInjection();
+    this.start();
+  }
 
-console.info('Running Database Connection Tests...');
-sequelize.authenticate().then(() => {
-  app.listen(port, () => {
-    console.info(`App listening at http://localhost:${port}`);
-  });
-});
+  private routerInjection() {
+    ClientRouter.inject(this.app);
+  }
+
+  private start(): void {
+    console.info('Running Database Connection Tests...');
+    sequelize.authenticate().then(() => {
+      this.app.listen(this.port, () => {
+        console.info(`App listening at http://localhost:${this.port}`);
+      });
+    });
+  }
+}
+
+export default new App();
