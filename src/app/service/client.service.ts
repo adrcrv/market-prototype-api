@@ -20,7 +20,7 @@ export default class ClientService {
     return this.clientRepository.create(client);
   }
 
-  public updateById(id: number | string, client: Client): Promise<Client> {
+  public updateById(id: number | string, client: Client): Promise<Client | null> {
     return this.clientRepository.updateById(id, client);
   }
 }

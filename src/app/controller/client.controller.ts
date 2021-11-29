@@ -29,7 +29,7 @@ export default class ClientController {
     const { body, params } = req;
     const { id } = params;
     const clientService: ClientService = new ClientService();
-    const payload: Client = await clientService.updateById(id, body);
+    const payload: Client | null = await clientService.updateById(id, body);
     if (payload) res.status(HTTP_STATUS.OK).json(payload);
     else res.status(HTTP_STATUS.No_Content).json();
   }
