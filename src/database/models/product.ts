@@ -1,5 +1,5 @@
 import { DataTypes, Model, Sequelize } from 'sequelize';
-import { Product } from '../entities/product';
+import { Product } from '../../app/interface/product';
 
 export default (sequelize: Sequelize) => {
   interface ProductInstance extends Product, Model {}

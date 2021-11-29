@@ -1,5 +1,5 @@
-import { Product } from '../../database/entities/product';
 import ProductRepository from '../repository/product.repository';
+import { Product } from '../interface/product';
 
 export default class ProductService {
   private productRepository: ProductRepository;

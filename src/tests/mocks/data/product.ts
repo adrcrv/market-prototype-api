@@ -1,4 +1,4 @@
-import { Product } from '../../../database/entities/product';
+import { Product } from '../../../app/interface/product';
 
 export const productMock1: Product = {
   id: 1,

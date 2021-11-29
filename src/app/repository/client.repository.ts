@@ -1,5 +1,5 @@
 import { db } from '../../database/config/db-connection';
-import { Client } from '../../database/entities/client';
+import { Client } from '../interface/client';
 
 export default class ClientRepository {
   private client: any;

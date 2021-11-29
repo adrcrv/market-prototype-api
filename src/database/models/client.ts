@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes, Model } from 'sequelize';
-import { Client } from '../entities/client';
+import { Client } from '../../app/interface/client';
 
 export default (sequelize: Sequelize) => {
   interface ClientInstance extends Client, Model {}

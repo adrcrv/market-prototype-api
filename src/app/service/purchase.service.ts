@@ -1,5 +1,6 @@
-import { Purchase } from '../../database/entities/purchase';
 import PurchaseRepository from '../repository/purchase.repository';
+import { Purchase } from '../interface/purchase';
+import { PurchaseCreation } from '../interface/purchase-creation';
 
 export default class PurchaseService {
   private purchaseRepository: PurchaseRepository;
@@ -16,7 +17,7 @@ export default class PurchaseService {
     return this.purchaseRepository.findById(id);
   }
 
-  public create(purchase: Purchase): Promise<Purchase> {
+  public create(purchase: PurchaseCreation): Promise<Purchase> {
     return this.purchaseRepository.create(purchase);
   }
 

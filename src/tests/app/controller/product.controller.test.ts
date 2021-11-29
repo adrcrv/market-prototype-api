@@ -1,6 +1,6 @@
 import ProductController from '../../../app/controller/product.controller';
-import { productMock1, productMock2 } from '../../mocks/entities/product';
-import { HTTP_STATUS } from '../../../app/constant/http-status.constant';
+import { productMock1, productMock2 } from '../../mocks/data/product';
+import HTTP_STATUS from '../../../app/constant/http-status.constant';
 
 const { default: express } = jest.requireMock('../../mocks/express/express');
 

@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import PurchaseService from '../service/purchase.service';
-import { HTTP_STATUS } from '../constant/http-status.constant';
-import { Purchase } from '../../database/entities/purchase';
+import HTTP_STATUS from '../constant/http-status.constant';
+import { Purchase } from '../interface/purchase';
+import { PurchaseCreation } from '../interface/purchase-creation';
 
 export default class PurchaseController {
   public static async findAll(req: Request, res: Response): Promise<void> {
@@ -20,7 +21,7 @@ export default class PurchaseController {
 
   public static async create(req: Request, res: Response): Promise<void> {
     try {
-      const { body }: { body: Purchase } = req;
+      const { body }: { body: PurchaseCreation } = req;
       const purchaseService: PurchaseService = new PurchaseService();
       const payload: Purchase = await purchaseService.create(body);
       res.status(HTTP_STATUS.OK).json(payload);

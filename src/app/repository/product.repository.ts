@@ -1,5 +1,5 @@
 import { db } from '../../database/config/db-connection';
-import { Product } from '../../database/entities/product';
+import { Product } from '../interface/product';
 
 export default class ProductRepository {
   private product: any;

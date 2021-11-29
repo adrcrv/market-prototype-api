@@ -1,5 +1,5 @@
-import { Client } from '../../../database/entities/client';
-import { clientMock1, clientMock2 } from '../entities/client';
+import { clientMock1, clientMock2 } from '../data/client';
+import { Client } from '../../../app/interface/client';
 
 export default {
   findAll: jest.fn(async (): Promise<Client[]> => {

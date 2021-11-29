@@ -1,5 +1,5 @@
 import { DataTypes, Model, Sequelize } from 'sequelize';
-import { PurchaseProduct } from '../entities/purchase-product';
+import { PurchaseProduct } from '../../app/interface/purchase-product';
 
 export default (sequelize: Sequelize) => {
   interface PurchaseProductInstance extends PurchaseProduct, Model {}

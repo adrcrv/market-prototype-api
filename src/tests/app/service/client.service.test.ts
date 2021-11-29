@@ -1,6 +1,6 @@
-import { Client } from '../../../database/entities/client';
-import { clientMock1, clientMock2 } from '../../mocks/entities/client';
 import ClientService from '../../../app/service/client.service';
+import { Client } from '../../../app/interface/client';
+import { clientMock1, clientMock2 } from '../../mocks/data/client';
 
 jest.mock('../../../database/config/db-connection', (): object => {
   const { default: db } = jest.requireActual('../../mocks/db-connection/db-connection');

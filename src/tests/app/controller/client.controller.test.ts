@@ -1,6 +1,6 @@
 import ClientController from '../../../app/controller/client.controller';
-import { clientMock1, clientMock2 } from '../../mocks/entities/client';
-import { HTTP_STATUS } from '../../../app/constant/http-status.constant';
+import HTTP_STATUS from '../../../app/constant/http-status.constant';
+import { clientMock1, clientMock2 } from '../../mocks/data/client';
 
 const { default: express } = jest.requireMock('../../mocks/express/express');
 

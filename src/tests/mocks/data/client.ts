@@ -1,4 +1,4 @@
-import { Client } from '../../../database/entities/client';
+import { Client } from '../../../app/interface/client';
 
 export const clientMock1: Client = {
   id: 1,

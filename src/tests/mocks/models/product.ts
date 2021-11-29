@@ -1,5 +1,5 @@
-import { Product } from '../../../database/entities/product';
-import { productMock1, productMock2 } from '../entities/product';
+import { productMock1, productMock2 } from '../data/product';
+import { Product } from '../../../app/interface/product';
 
 export default {
   findAll: jest.fn(async (): Promise<Product[]> => {

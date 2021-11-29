@@ -1,6 +1,6 @@
 import { db } from '../../database/config/db-connection';
-import { Purchase } from '../../database/entities/purchase';
-import { PurchaseProduct } from '../../database/entities/purchase-product';
+import { Purchase } from '../interface/purchase';
+import { PurchaseCreation } from '../interface/purchase-creation';
 
 export default class PurchaseRepository {
   private purchase: any;
@@ -15,7 +15,7 @@ export default class PurchaseRepository {
     this.product = db.Product;
     this.client = db.Client;
     this.purchaseProduct = db.PurchaseProduct;
-    this.productRelation = { model: this.product, as: 'products', through: { attributes: ['quantity'], as: 'purchaseProduct' } };
+    this.productRelation = { model: this.product, as: 'product', through: { attributes: ['quantity'], as: 'purchaseProduct' } };
     this.clientRelation = { model: this.client, as: 'client' };
   }
 
@@ -29,9 +29,9 @@ export default class PurchaseRepository {
     return this.purchase.findOne({ where: { id }, include });
   }
 
-  public async create(purchase: Purchase): Promise<Purchase> {
-    const { product, ...newPurchase }: Purchase = purchase;
-    const { id: productId, quantity: productQuantity }: PurchaseProduct = product;
+  public async create(purchase: PurchaseCreation): Promise<Purchase> {
+    const { product, ...newPurchase }: PurchaseCreation = purchase;
+    const { id: productId, quantity: productQuantity } = product;
     const newPurchaseData: Purchase = await this.purchase.create(newPurchase);
     const { id: purchaseId }: { id: number } = newPurchaseData;
     await this.purchaseProduct.create({ purchaseId, productId, quantity: productQuantity });

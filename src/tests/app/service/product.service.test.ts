@@ -1,6 +1,6 @@
-import { Product } from '../../../database/entities/product';
-import { productMock1, productMock2 } from '../../mocks/entities/product';
 import ProductService from '../../../app/service/product.service';
+import { productMock1, productMock2 } from '../../mocks/data/product';
+import { Product } from '../../../app/interface/product';
 
 jest.mock('../../../database/config/db-connection', (): object => {
   const { default: db } = jest.requireActual('../../mocks/db-connection/db-connection');

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import ProductService from '../service/product.service';
-import { HTTP_STATUS } from '../constant/http-status.constant';
-import { Product } from '../../database/entities/product';
+import HTTP_STATUS from '../constant/http-status.constant';
+import { Product } from '../interface/product';
 
 export default class ProductController {
   public static async findAll(req: Request, res: Response): Promise<void> {

@@ -1,8 +1,7 @@
 import ProductRepository from '../../../app/repository/product.repository';
-import { Product } from '../../../database/entities/product';
-import { productMock1, productMock2 } from '../../mocks/entities/product';
-
 import { db } from '../../../database/config/db-connection';
+import { Product } from '../../../app/interface/product';
+import { productMock1, productMock2 } from '../../mocks/data/product';
 
 jest.mock('../../../database/config/db-connection', (): object => {
   const { default: dbMock } = jest.requireMock('../../mocks/db-connection/db-connection');

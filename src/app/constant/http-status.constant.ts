@@ -1,8 +1,6 @@
-export interface HttpStatus {
-  [key: string]: number
-}
+import { HttpStatus } from '../interface/http-status';
 
-export const HTTP_STATUS: HttpStatus = {
+const HTTP_STATUS: HttpStatus = {
   Continue: 100,
   Switching_Protocols: 101,
   Processing: 102,
@@ -67,3 +65,5 @@ export const HTTP_STATUS: HttpStatus = {
   Not_Extended: 510,
   Network_Authentication_Required: 511,
 };
+
+export default HTTP_STATUS;

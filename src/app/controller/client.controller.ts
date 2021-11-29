@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import ClientService from '../service/client.service';
-import { HTTP_STATUS } from '../constant/http-status.constant';
-import { Client } from '../../database/entities/client';
+import HTTP_STATUS from '../constant/http-status.constant';
+import { Client } from '../interface/client';
 
 export default class ClientController {
   public static async findAll(req: Request, res: Response): Promise<void> {

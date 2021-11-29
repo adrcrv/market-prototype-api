@@ -6,7 +6,7 @@ export interface Product {
   color: string;
   size: string;
   price: number;
-  purchaseProduct: PurchaseProduct
+  purchaseProduct?: PurchaseProduct
   createdAt: Date;
   updatedAt: Date;
 }

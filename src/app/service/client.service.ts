@@ -1,5 +1,5 @@
-import { Client } from '../../database/entities/client';
 import ClientRepository from '../repository/client.repository';
+import { Client } from '../interface/client';
 
 export default class ClientService {
   private clientRepository: ClientRepository;
