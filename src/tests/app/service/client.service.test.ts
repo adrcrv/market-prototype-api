@@ -42,3 +42,19 @@ describe('ClientService create', (): void => {
     expect(data).toEqual(clientMock2);
   });
 });
+
+describe('ClientService update', (): void => {
+  test('Expect update to equal client', async (): Promise<void> => {
+    const clientService: ClientService = new ClientService();
+    const inputId = clientMock2.id;
+    const data: Client | null = await clientService.updateById(inputId, clientMock2);
+    expect(data).toEqual(clientMock2);
+  });
+
+  test('Expect update to be null', async (): Promise<void> => {
+    const clientService: ClientService = new ClientService();
+    const inputId: number = 9999; // Nonexistent ID
+    const data: Client | null = await clientService.updateById(inputId, clientMock2);
+    expect(data).toBeNull();
+  });
+});

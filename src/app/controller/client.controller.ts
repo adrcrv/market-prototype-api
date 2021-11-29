@@ -33,4 +33,12 @@ export default class ClientController {
     if (payload) res.status(HTTP_STATUS.OK).json(payload);
     else res.status(HTTP_STATUS.No_Content).json();
   }
+
+  public static async deleteById(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    const clientService: ClientService = new ClientService();
+    const payload: number | null = await clientService.deleteById(id);
+    if (payload) res.status(HTTP_STATUS.OK).json();
+    else res.status(HTTP_STATUS.No_Content).json();
+  }
 }

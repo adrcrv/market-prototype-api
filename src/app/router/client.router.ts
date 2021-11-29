@@ -7,5 +7,6 @@ export default class ClientRouter {
     app.get('/api/clients/:id', ClientController.findById);
     app.post('/api/clients/', ClientController.create);
     app.put('/api/clients/:id', ClientController.updateById);
+    app.delete('/api/clients/:id', ClientController.deleteById);
   }
 }

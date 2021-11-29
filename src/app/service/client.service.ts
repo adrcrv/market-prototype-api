@@ -23,4 +23,8 @@ export default class ClientService {
   public updateById(id: number | string, client: Client): Promise<Client | null> {
     return this.clientRepository.updateById(id, client);
   }
+
+  public deleteById(id: number | string): Promise<number | null> {
+    return this.clientRepository.deleteById(id);
+  }
 }

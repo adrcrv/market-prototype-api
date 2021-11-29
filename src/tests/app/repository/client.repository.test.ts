@@ -47,3 +47,23 @@ describe('ClientRepository create', (): void => {
     expect(data).toEqual(clientMock2);
   });
 });
+
+describe('ClientRepository update by id', (): void => {
+  test('Expect update to equal a client', async (): Promise<void> => {
+    const clientRepository: ClientRepository = new ClientRepository();
+    const inputId: number = clientMock2.id;
+    const data: Client | null = await clientRepository.updateById(inputId, clientMock2);
+    const expectedUpdateOptions = { where: { id: inputId }, returning: true };
+    expect(db.Client.update).toBeCalledWith(clientMock2, expectedUpdateOptions);
+    expect(data).toEqual(clientMock2);
+  });
+
+  test('Expect update to be null', async (): Promise<void> => {
+    const clientRepository: ClientRepository = new ClientRepository();
+    const inputId: number = 9999; // Nonexistent ID
+    const data: Client | null = await clientRepository.updateById(inputId, clientMock2);
+    const expectedUpdateOptions = { where: { id: inputId }, returning: true };
+    expect(db.Client.update).toBeCalledWith(clientMock2, expectedUpdateOptions);
+    expect(data).toBeNull();
+  });
+});

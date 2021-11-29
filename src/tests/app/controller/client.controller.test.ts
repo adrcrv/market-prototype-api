@@ -14,7 +14,7 @@ beforeEach(() => {
 });
 
 describe('ClientController findAll', (): void => {
-  test('Expect findAll to called with && equal array of clients', async (): Promise<void> => {
+  test('Expect findAll to be called with && equal array of clients', async (): Promise<void> => {
     const { req, res } = express;
     await ClientController.findAll(req, res);
     expect(res.status).toBeCalledWith(HTTP_STATUS.OK);
@@ -23,7 +23,7 @@ describe('ClientController findAll', (): void => {
 });
 
 describe('ClientController findById', (): void => {
-  test('Expect findById to called with && equal of client', async (): Promise<void> => {
+  test('Expect findById to be called with && equal of client', async (): Promise<void> => {
     const { req, res } = express;
     req.params = { id: clientMock1.id };
     await ClientController.findById(req, res);
@@ -31,7 +31,7 @@ describe('ClientController findById', (): void => {
     expect(res.status().json).toBeCalledWith(clientMock1);
   });
 
-  test('Expect findById to called with && equal of client', async (): Promise<void> => {
+  test('Expect findById to be called with && equal of client', async (): Promise<void> => {
     const { req, res } = express;
     req.params = { id: 9999 }; // Nonexistent ID
     await ClientController.findById(req, res);
@@ -41,11 +41,31 @@ describe('ClientController findById', (): void => {
 });
 
 describe('ClientController create', (): void => {
-  test('Expect create to called with equal array of clients', async (): Promise<void> => {
+  test('Expect create to be called with equal array of clients', async (): Promise<void> => {
     const { req, res } = express;
     req.body = clientMock2;
     await ClientController.create(req, res);
     expect(res.status).toBeCalledWith(HTTP_STATUS.OK);
     expect(res.status().json).toBeCalledWith(clientMock2);
+  });
+});
+
+describe('ClientController update by id', (): void => {
+  test('Expect update to be called with && equal client', async (): Promise<void> => {
+    const { req, res } = express;
+    req.body = clientMock2;
+    req.params.id = clientMock2.id;
+    await ClientController.updateById(req, res);
+    expect(res.status).toBeCalledWith(HTTP_STATUS.OK);
+    expect(res.status().json).toBeCalledWith(clientMock2);
+  });
+
+  test('Expect update to be called with && to be null', async (): Promise<void> => {
+    const { req, res } = express;
+    req.body = clientMock2;
+    req.params = { id: 9999 }; // Nonexistent ID
+    await ClientController.updateById(req, res);
+    expect(res.status).toBeCalledWith(HTTP_STATUS.No_Content);
+    expect(res.status().json).toBeCalledWith();
   });
 });

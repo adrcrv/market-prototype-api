@@ -25,4 +25,9 @@ export default class ClientRepository {
     const [rows, data] = response;
     return rows ? data[0] : null;
   }
+
+  public async deleteById(id: number | string): Promise<number | null> {
+    const rows = await this.client.destroy({ where: { id } });
+    return rows || null;
+  }
 }
