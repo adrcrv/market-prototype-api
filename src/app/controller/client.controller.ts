@@ -24,4 +24,13 @@ export default class ClientController {
     const payload: Client = await clientService.create(body);
     res.status(HTTP_STATUS.OK).json(payload);
   }
+
+  public static async updateById(req: Request, res: Response): Promise<void> {
+    const { body, params } = req;
+    const { id } = params;
+    const clientService: ClientService = new ClientService();
+    const payload: Client = await clientService.updateById(id, body);
+    if (payload) res.status(HTTP_STATUS.OK).json(payload);
+    else res.status(HTTP_STATUS.No_Content).json();
+  }
 }
