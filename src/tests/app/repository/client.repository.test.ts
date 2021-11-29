@@ -67,3 +67,21 @@ describe('ClientRepository update by id', (): void => {
     expect(data).toBeNull();
   });
 });
+
+describe('ClientRepository update by id', (): void => {
+  test('Expect deleteById to equal a 1', async (): Promise<void> => {
+    const clientRepository: ClientRepository = new ClientRepository();
+    const inputId: number = clientMock2.id;
+    const data: number | null = await clientRepository.deleteById(inputId);
+    expect(db.Client.destroy).toBeCalledWith({ where: { id: inputId } });
+    expect(data).toEqual(1);
+  });
+
+  test('Expect deleteById to be null', async (): Promise<void> => {
+    const clientRepository: ClientRepository = new ClientRepository();
+    const inputId: number = 9999; // Nonexistent ID
+    const data: number | null = await clientRepository.deleteById(inputId);
+    expect(db.Client.destroy).toBeCalledWith({ where: { id: inputId } });
+    expect(data).toEqual(null);
+  });
+});

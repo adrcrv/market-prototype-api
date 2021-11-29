@@ -58,3 +58,19 @@ describe('ClientService update', (): void => {
     expect(data).toBeNull();
   });
 });
+
+describe('ClientService delete', (): void => {
+  test('Expect deleteById to equal 1', async (): Promise<void> => {
+    const clientService: ClientService = new ClientService();
+    const inputId = clientMock2.id;
+    const data: number | null = await clientService.deleteById(inputId);
+    expect(data).toEqual(1);
+  });
+
+  test('Expect deleteById to be null', async (): Promise<void> => {
+    const clientService: ClientService = new ClientService();
+    const inputId: number = 9999; // Nonexistent ID
+    const data: number | null = await clientService.deleteById(inputId);
+    expect(data).toBeNull();
+  });
+});

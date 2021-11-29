@@ -17,6 +17,10 @@ const db: any = {
       const { id } = options.where;
       return id === clientMock2.id ? [1, [query]] : [0, []];
     }),
+    destroy: jest.fn(async (query): Promise<number> => {
+      const { id } = query.where;
+      return id === clientMock2.id ? 1 : null;
+    }),
   },
 };
 

@@ -69,3 +69,23 @@ describe('ClientController update by id', (): void => {
     expect(res.status().json).toBeCalledWith();
   });
 });
+
+describe('ClientController delete by id', (): void => {
+  test('Expect delete to be called with', async (): Promise<void> => {
+    const { req, res } = express;
+    req.body = clientMock2;
+    req.params.id = clientMock2.id;
+    await ClientController.deleteById(req, res);
+    expect(res.status).toBeCalledWith(HTTP_STATUS.OK);
+    expect(res.status().json).toBeCalledWith();
+  });
+
+  test('Expect update to be called with && to be null', async (): Promise<void> => {
+    const { req, res } = express;
+    req.body = clientMock2;
+    req.params = { id: 9999 }; // Nonexistent ID
+    await ClientController.deleteById(req, res);
+    expect(res.status).toBeCalledWith(HTTP_STATUS.No_Content);
+    expect(res.status().json).toBeCalledWith();
+  });
+});
