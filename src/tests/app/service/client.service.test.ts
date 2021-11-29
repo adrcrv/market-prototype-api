@@ -34,3 +34,11 @@ describe('ClientService findById', (): void => {
     expect(data).toBeNull();
   });
 });
+
+describe('ClientService create', (): void => {
+  test('Expect create to equal a new client', async (): Promise<void> => {
+    const clientService: ClientService = new ClientService();
+    const data: Client = await clientService.create(clientMock2);
+    expect(data).toEqual(clientMock2);
+  });
+});

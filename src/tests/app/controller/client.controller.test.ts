@@ -14,7 +14,7 @@ beforeEach(() => {
 });
 
 describe('ClientController findAll', (): void => {
-  test('Expect findAll to called with equal array of clients', async (): Promise<void> => {
+  test('Expect findAll to called with && equal array of clients', async (): Promise<void> => {
     const { req, res } = express;
     await ClientController.findAll(req, res);
     expect(res.status).toBeCalledWith(HTTP_STATUS.OK);
@@ -31,11 +31,21 @@ describe('ClientController findById', (): void => {
     expect(res.status().json).toBeCalledWith(clientMock1);
   });
 
-  test('Expect findById to called with && to be null', async (): Promise<void> => {
+  test('Expect findById to called with && equal of client', async (): Promise<void> => {
     const { req, res } = express;
     req.params = { id: 9999 }; // Nonexistent ID
     await ClientController.findById(req, res);
     expect(res.status).toBeCalledWith(HTTP_STATUS.No_Content);
     expect(res.status().json).toBeCalledWith();
+  });
+});
+
+describe('ClientController create', (): void => {
+  test('Expect create to called with equal array of clients', async (): Promise<void> => {
+    const { req, res } = express;
+    req.body = clientMock2;
+    await ClientController.create(req, res);
+    expect(res.status).toBeCalledWith(HTTP_STATUS.OK);
+    expect(res.status().json).toBeCalledWith(clientMock2);
   });
 });

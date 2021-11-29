@@ -38,3 +38,12 @@ describe('ClientRepository FindById', (): void => {
     expect(data).toBeNull();
   });
 });
+
+describe('ClientRepository create', (): void => {
+  test('Expect create to equal a new client', async (): Promise<void> => {
+    const clientRepository: ClientRepository = new ClientRepository();
+    const data: Client = await clientRepository.create(clientMock2);
+    expect(db.Client.create).toBeCalledWith(clientMock2);
+    expect(data).toEqual(clientMock2);
+  });
+});

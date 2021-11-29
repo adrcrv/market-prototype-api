@@ -30,8 +30,11 @@ class DbConnection {
     return this.modelFiles.filter((file: string) => {
       const hasNotDot: boolean = file.indexOf('.') !== 0;
       const isNotBaseName: boolean = file !== this.modelDir;
-      const isJsFormat: boolean = file.slice(-3) === '.ts';
-      return hasNotDot && isNotBaseName && isJsFormat;
+      const fileFormat = file.slice(-3);
+      const isTsFormat: boolean = fileFormat === '.ts';
+      const isJsFormat: boolean = fileFormat === '.js';
+      const isTsOrJsFormat: boolean = isTsFormat || isJsFormat;
+      return hasNotDot && isNotBaseName && isTsOrJsFormat;
     });
   }
 

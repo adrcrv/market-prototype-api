@@ -2,7 +2,7 @@ import { db } from '../../database/config/db-connection';
 import { Client } from '../../database/entities/client';
 
 export default class ClientRepository {
-  private client;
+  private client: any;
 
   public constructor() {
     this.client = db.Client;
@@ -14,5 +14,9 @@ export default class ClientRepository {
 
   public findById(id: number): Client {
     return this.client.findOne({ where: { id } });
+  }
+
+  public create(client: Client): Client {
+    return this.client.create(client);
   }
 }

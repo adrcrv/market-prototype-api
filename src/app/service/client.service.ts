@@ -15,4 +15,8 @@ export default class ClientService {
   public findById(id: number): Client {
     return this.clientRepository.findById(id);
   }
+
+  public create(client: Client): Client {
+    return this.clientRepository.create(client);
+  }
 }
