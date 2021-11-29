@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import { sequelize } from './database/config/db-connection';
 import ClientRouter from './app/router/client.router';
 import ProductRouter from './app/router/product.router';
+import PurchaseRouter from './app/router/purchase.router';
 
 class App {
   private app: Application = express();
@@ -22,6 +23,7 @@ class App {
   private routerInjection(): void {
     ClientRouter.inject(this.app);
     ProductRouter.inject(this.app);
+    PurchaseRouter.inject(this.app);
   }
 
   private start(): void {

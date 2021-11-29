@@ -25,5 +25,7 @@ export default (sequelize: Sequelize) => {
 
   const ProductOptions: object = { tableName: 'product' };
 
-  return sequelize.define<ProductInstance>('Product', ProductSchema, ProductOptions);
+  const ProductModel: any = sequelize.define<ProductInstance>('Product', ProductSchema, ProductOptions);
+
+  return ProductModel;
 };

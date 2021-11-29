@@ -19,11 +19,12 @@ class DbConnection {
     this.dynamicModelImport();
   }
 
-  private dynamicModelImport() {
+  private async dynamicModelImport() {
     const castedDirectoryFiles: string[] = this.castDirectoryFiles();
-    castedDirectoryFiles.forEach(this.dynamicModelImportHandler.bind(this));
+    const promises = castedDirectoryFiles.map(this.dynamicModelImportHandler.bind(this));
+    await Promise.all(promises);
     const modelsKeys: string[] = Object.keys(this.db);
-    modelsKeys.forEach(this.dynamicModelAssociateHandler);
+    modelsKeys.forEach(this.dynamicModelAssociateHandler.bind(this));
   }
 
   private castDirectoryFiles(): string[] {

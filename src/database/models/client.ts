@@ -25,5 +25,11 @@ export default (sequelize: Sequelize) => {
 
   const ClientOptions: object = { tableName: 'client' };
 
-  return sequelize.define<ClientInstance>('Client', ClientSchema, ClientOptions);
+  const ClientModel: any = sequelize.define<ClientInstance>('Client', ClientSchema, ClientOptions);
+
+  ClientModel.associate = (models) => {
+    ClientModel.hasMany(models.Purchase, { foreignKey: 'clientId', as: 'client' });
+  };
+
+  return ClientModel;
 };
