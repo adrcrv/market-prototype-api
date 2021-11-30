@@ -8,6 +8,39 @@ on:
   workflow_dispatch:
   
 jobs:
+
+  eslint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Cache Node Modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+      
+      - name: Install
+        run: yarn install
+      
+      - name: Test
+        run: yarn test
+        
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Install
+        run: yarn install
+      
+      - name: Test
+        run: yarn test
+        
   build:
     runs-on: ubuntu-latest
 
@@ -17,5 +50,5 @@ jobs:
       - name: Install
         run: yarn install
       
-      - name: ESLint
-        run: yarn eslint
+      - name: Build
+        run: yarn build
