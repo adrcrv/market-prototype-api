@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
 import PurchaseService from '../service/purchase.service';
 import HTTP_STATUS from '../constant/http-status.constant';
-import { Purchase } from '../interface/purchase';
-import { PurchaseCreation } from '../interface/purchase-creation';
+import { Purchase, PurchaseCreation } from '../interface/purchase';
 
 export default class PurchaseController {
   public static async findAll(req: Request, res: Response): Promise<void> {
@@ -30,7 +29,7 @@ export default class PurchaseController {
     const { body, params } = req;
     const { id } = params;
     const purchaseService: PurchaseService = new PurchaseService();
-    const payload: Purchase | null = await purchaseService.updateById(id, body);
+    const payload: Purchase | null = await purchaseService.updateById(+id, body);
     if (payload) res.status(HTTP_STATUS.OK).json(payload);
     else res.status(HTTP_STATUS.No_Content).json();
   }
@@ -38,7 +37,7 @@ export default class PurchaseController {
   public static async deleteById(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
     const purchaseService: PurchaseService = new PurchaseService();
-    const payload: number | null = await purchaseService.deleteById(id);
+    const payload: number | null = await purchaseService.deleteById(+id);
     if (payload) res.status(HTTP_STATUS.OK).json();
     else res.status(HTTP_STATUS.No_Content).json();
   }

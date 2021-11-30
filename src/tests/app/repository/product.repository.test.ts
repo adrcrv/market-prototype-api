@@ -24,7 +24,8 @@ describe('ProductRepository FindAll', (): void => {
 describe('ProductRepository FindById', (): void => {
   test('Expect findById to equal product', async (): Promise<void> => {
     const productRepository: ProductRepository = new ProductRepository();
-    const inputId: number = productMock1.id;
+    const inputId: number | undefined = productMock1.id;
+    if (!inputId) return;
     const data: Product = await productRepository.findById(inputId);
     expect(db.Product.findOne).toBeCalledWith({ where: { id: inputId } });
     expect(data).toEqual(productMock1);
@@ -51,7 +52,8 @@ describe('ProductRepository create', (): void => {
 describe('ProductRepository update', (): void => {
   test('Expect update to equal a product', async (): Promise<void> => {
     const productRepository: ProductRepository = new ProductRepository();
-    const inputId: number = productMock2.id;
+    const inputId: number | undefined = productMock2.id;
+    if (!inputId) return;
     const data: Product | null = await productRepository.updateById(inputId, productMock2);
     const expectedUpdateOptions = { where: { id: inputId }, returning: true };
     expect(db.Product.update).toBeCalledWith(productMock2, expectedUpdateOptions);
@@ -71,7 +73,8 @@ describe('ProductRepository update', (): void => {
 describe('ProductRepository delete', (): void => {
   test('Expect deleteById to equal a 1', async (): Promise<void> => {
     const productRepository: ProductRepository = new ProductRepository();
-    const inputId: number = productMock2.id;
+    const inputId: number | undefined = productMock2.id;
+    if (!inputId) return;
     const data: number | null = await productRepository.deleteById(inputId);
     expect(db.Product.destroy).toBeCalledWith({ where: { id: inputId } });
     expect(data).toEqual(1);
@@ -81,7 +84,6 @@ describe('ProductRepository delete', (): void => {
     const productRepository: ProductRepository = new ProductRepository();
     const inputId: number = 9999; // Nonexistent ID
     const data: number | null = await productRepository.deleteById(inputId);
-    expect(db.PurchaseProduct.destroy).toBeCalledWith({ where: { productId: inputId } });
     expect(db.Product.destroy).toBeCalledWith({ where: { id: inputId } });
     expect(data).toEqual(null);
   });

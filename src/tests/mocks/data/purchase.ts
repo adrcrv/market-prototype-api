@@ -1,7 +1,6 @@
 import { clientMock1, clientMock2 } from './client';
 import { productMock1, productMock2 } from './product';
-import { Purchase } from '../../../app/interface/purchase';
-import { PurchaseCreation } from '../../../app/interface/purchase-creation';
+import { Purchase, PurchaseCreation } from '../../../app/interface/purchase';
 
 export const purchaseMock1: Purchase = {
   id: 1,
@@ -28,6 +27,6 @@ export const purchaseMock2: Purchase = {
 export const purchaseMock3: PurchaseCreation = {
   note: null,
   clientId: clientMock2.id,
-  product: { id: productMock2.id, quantity: 1 },
+  product: { id: 2, quantity: 1 },
   paymentMethod: 'Credit Card',
 };

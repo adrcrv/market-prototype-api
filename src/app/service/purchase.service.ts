@@ -1,12 +1,14 @@
 import PurchaseRepository from '../repository/purchase.repository';
-import { Purchase } from '../interface/purchase';
-import { PurchaseCreation } from '../interface/purchase-creation';
+import PurchaseProductRepository from '../repository/purchase-product.repository';
+import { Purchase, PurchaseCreation, PurchaseProductCreation } from '../interface/purchase';
 
 export default class PurchaseService {
   private purchaseRepository: PurchaseRepository;
+  private purchaseProductRepository: PurchaseProductRepository;
 
   public constructor() {
     this.purchaseRepository = new PurchaseRepository();
+    this.purchaseProductRepository = new PurchaseProductRepository();
   }
 
   public findAll(): Purchase[] {
@@ -17,15 +19,21 @@ export default class PurchaseService {
     return this.purchaseRepository.findById(id);
   }
 
-  public create(purchase: PurchaseCreation): Promise<Purchase> {
-    return this.purchaseRepository.create(purchase);
+  public async create(purchaseCreation: PurchaseCreation): Promise<Purchase> {
+    const { product, ...purchase }: PurchaseCreation = purchaseCreation;
+    const { id: productId, quantity }: PurchaseProductCreation = product;
+    const { id: purchaseId }: Purchase = await this.purchaseRepository.create(purchase);
+    if (!purchaseId || !productId) throw new Error(); // TODO: Error Handler Implementation
+    await this.purchaseProductRepository.create({ purchaseId, productId, quantity });
+    return this.findById(purchaseId);
   }
 
-  public updateById(id: number | string, purchase: Purchase): Promise<Purchase | null> {
+  public updateById(id: number, purchase: Purchase): Promise<Purchase | null> {
     return this.purchaseRepository.updateById(id, purchase);
   }
 
-  public deleteById(id: number | string): Promise<number | null> {
+  public async deleteById(id: number): Promise<number | null> {
+    await this.purchaseProductRepository.deleteById({ purchaseId: id });
     return this.purchaseRepository.deleteById(id);
   }
 }

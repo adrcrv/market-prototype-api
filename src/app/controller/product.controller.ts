@@ -29,7 +29,7 @@ export default class ProductController {
     const { body, params } = req;
     const { id } = params;
     const productService: ProductService = new ProductService();
-    const payload: Product | null = await productService.updateById(id, body);
+    const payload: Product | null = await productService.updateById(+id, body);
     if (payload) res.status(HTTP_STATUS.OK).json(payload);
     else res.status(HTTP_STATUS.No_Content).json();
   }
@@ -37,7 +37,7 @@ export default class ProductController {
   public static async deleteById(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
     const productService: ProductService = new ProductService();
-    const payload: number | null = await productService.deleteById(id);
+    const payload: number | null = await productService.deleteById(+id);
     if (payload) res.status(HTTP_STATUS.OK).json();
     else res.status(HTTP_STATUS.No_Content).json();
   }

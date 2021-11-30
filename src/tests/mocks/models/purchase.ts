@@ -9,7 +9,7 @@ export default {
     const { id } = query.where;
     return id === purchaseMock1.id ? purchaseMock1 : null;
   }),
-  create: jest.fn(async (query): Promise<Purchase> => {
+  create: jest.fn(async (query: Purchase): Promise<Purchase> => {
     return { ...purchaseMock1, ...query };
   }),
   update: jest.fn(async (query, options): Promise<(number | any[])[]> => {

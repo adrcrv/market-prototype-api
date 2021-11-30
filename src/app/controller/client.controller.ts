@@ -29,7 +29,7 @@ export default class ClientController {
     const { body, params } = req;
     const { id } = params;
     const clientService: ClientService = new ClientService();
-    const payload: Client | null = await clientService.updateById(id, body);
+    const payload: Client | null = await clientService.updateById(+id, body);
     if (payload) res.status(HTTP_STATUS.OK).json(payload);
     else res.status(HTTP_STATUS.No_Content).json();
   }
@@ -37,7 +37,7 @@ export default class ClientController {
   public static async deleteById(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
     const clientService: ClientService = new ClientService();
-    const payload: number | null = await clientService.deleteById(id);
+    const payload: number | null = await clientService.deleteById(+id);
     if (payload) res.status(HTTP_STATUS.OK).json();
     else res.status(HTTP_STATUS.No_Content).json();
   }

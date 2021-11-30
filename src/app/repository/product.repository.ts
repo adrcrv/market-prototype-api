@@ -3,11 +3,9 @@ import { Product } from '../interface/product';
 
 export default class ProductRepository {
   private product: any;
-  private purchaseProduct: any;
 
   public constructor() {
     this.product = db.Product;
-    this.purchaseProduct = db.PurchaseProduct;
   }
 
   public findAll(): Product[] {
@@ -29,7 +27,6 @@ export default class ProductRepository {
   }
 
   public async deleteById(id: number | string): Promise<number | null> {
-    await this.purchaseProduct.destroy({ where: { productId: id } });
     const rows = await this.product.destroy({ where: { id } });
     return rows || null;
   }

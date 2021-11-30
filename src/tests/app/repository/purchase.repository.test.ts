@@ -2,8 +2,6 @@ import PurchaseRepository from '../../../app/repository/purchase.repository';
 import { db } from '../../../database/config/db-connection';
 import { Purchase } from '../../../app/interface/purchase';
 import { purchaseMock1, purchaseMock2, purchaseMock3 } from '../../mocks/data/purchase';
-import { PurchaseCreation } from '../../../app/interface/purchase-creation';
-import { PurchaseProduct } from '../../../app/interface/purchase-product';
 
 jest.mock('../../../database/config/db-connection', (): object => {
   const { default: dbMock } = jest.requireMock('../../mocks/db-connection/db-connection');
@@ -32,7 +30,8 @@ describe('PurchaseRepository FindById', (): void => {
 
   test('Expect findById to equal purchase', async (): Promise<void> => {
     const purchaseRepository: PurchaseRepository = new PurchaseRepository();
-    const inputId: number = purchaseMock1.id;
+    const inputId: number | undefined = purchaseMock1.id;
+    if (!inputId) return;
     const data: Purchase = await purchaseRepository.findById(inputId);
     expect(db.Purchase.findOne).toBeCalledWith({ where: { id: inputId }, include });
     expect(data).toEqual(purchaseMock1);
@@ -50,23 +49,18 @@ describe('PurchaseRepository FindById', (): void => {
 describe('PurchaseRepository create', (): void => {
   test('Expect create to equal a new purchase', async (): Promise<void> => {
     const purchaseRepository: PurchaseRepository = new PurchaseRepository();
-    const { product, ...newPurchase }: PurchaseCreation = purchaseMock3;
-    const { id: productId, quantity: productQuantity } = product;
-    const data: Purchase = await purchaseRepository.create(purchaseMock3);
-    const { id: purchaseId }: { id: number } = data;
-    const ppArgs: PurchaseProduct = { purchaseId, productId, quantity: productQuantity };
-
-    expect(db.Purchase.create).toBeCalledWith(newPurchase);
-    expect(db.PurchaseProduct.create).toBeCalledWith(ppArgs);
-    expect(db.Purchase.findOne).toBeCalled();
-    expect(data).toEqual({ ...purchaseMock1 });
+    const { product, ...purchase } = purchaseMock3;
+    const data = await purchaseRepository.create(purchase);
+    expect(db.Purchase.create).toBeCalledWith(purchase);
+    expect(data).toEqual({ ...purchaseMock1, ...purchase });
   });
 });
 
 describe('PurchaseRepository update by id', (): void => {
   test('Expect update to equal a purchase', async (): Promise<void> => {
     const purchaseRepository: PurchaseRepository = new PurchaseRepository();
-    const inputId: number = purchaseMock2.id;
+    const inputId: number | undefined = purchaseMock2.id;
+    if (!inputId) return;
     const data: Purchase | null = await purchaseRepository.updateById(inputId, purchaseMock2);
     const expectedUpdateOptions = { where: { id: inputId }, returning: true };
     expect(db.Purchase.update).toBeCalledWith(purchaseMock2, expectedUpdateOptions);
@@ -86,7 +80,8 @@ describe('PurchaseRepository update by id', (): void => {
 describe('PurchaseRepository delete by id', (): void => {
   test('Expect deleteById to equal a 1', async (): Promise<void> => {
     const purchaseRepository: PurchaseRepository = new PurchaseRepository();
-    const inputId: number = purchaseMock2.id;
+    const inputId: number | undefined = purchaseMock2.id;
+    if (!inputId) return;
     const data: number | null = await purchaseRepository.deleteById(inputId);
     expect(db.Purchase.destroy).toBeCalledWith({ where: { id: inputId } });
     expect(data).toEqual(1);
@@ -96,7 +91,6 @@ describe('PurchaseRepository delete by id', (): void => {
     const purchaseRepository: PurchaseRepository = new PurchaseRepository();
     const inputId: number = 9999; // Nonexistent ID
     const data: number | null = await purchaseRepository.deleteById(inputId);
-    expect(db.PurchaseProduct.destroy).toBeCalledWith({ where: { purchaseId: inputId } });
     expect(db.Purchase.destroy).toBeCalledWith({ where: { id: inputId } });
     expect(data).toEqual(null);
   });

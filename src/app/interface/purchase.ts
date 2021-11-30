@@ -1,13 +1,25 @@
 import { Client } from './client';
 import { Product } from './product';
 
-export interface Purchase {
+export interface PurchaseProductCreation {
   id: number,
+  quantity: number
+}
+
+export interface PurchaseCreation {
   clientId: number;
-  product: Product[]
-  client: Client,
+  product: PurchaseProductCreation,
   paymentMethod: string;
   note?: string | null;
-  createdAt: Date;
-  updatedAt: Date;
+}
+
+export interface Purchase {
+  id?: number,
+  clientId: number;
+  product?: Product[]
+  client?: Client,
+  paymentMethod: string;
+  note?: string | null;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
