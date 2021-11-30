@@ -45,6 +45,7 @@ export default class PurchaseRepository {
   }
 
   public async deleteById(id: number | string): Promise<number | null> {
+    await this.purchaseProduct.destroy({ where: { purchaseId: id } });
     const rows = await this.purchase.destroy({ where: { id } });
     return rows || null;
   }

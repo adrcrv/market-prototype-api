@@ -96,6 +96,7 @@ describe('PurchaseRepository delete by id', (): void => {
     const purchaseRepository: PurchaseRepository = new PurchaseRepository();
     const inputId: number = 9999; // Nonexistent ID
     const data: number | null = await purchaseRepository.deleteById(inputId);
+    expect(db.PurchaseProduct.destroy).toBeCalledWith({ where: { purchaseId: inputId } });
     expect(db.Purchase.destroy).toBeCalledWith({ where: { id: inputId } });
     expect(data).toEqual(null);
   });
