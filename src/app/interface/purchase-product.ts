@@ -1,8 +1,8 @@
 export interface PurchaseProduct {
-  id: number,
+  id?: number,
   purchaseId: number;
   productId: number;
   quantity: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

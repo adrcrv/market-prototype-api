@@ -20,14 +20,10 @@ export default class PurchaseController {
   }
 
   public static async create(req: Request, res: Response): Promise<void> {
-    try {
-      const { body }: { body: PurchaseCreation } = req;
-      const purchaseService: PurchaseService = new PurchaseService();
-      const payload: Purchase = await purchaseService.create(body);
-      res.status(HTTP_STATUS.OK).json(payload);
-    } catch (e) {
-      console.log(e);
-    }
+    const { body }: { body: PurchaseCreation } = req;
+    const purchaseService: PurchaseService = new PurchaseService();
+    const payload: Purchase = await purchaseService.create(body);
+    res.status(HTTP_STATUS.OK).json(payload);
   }
 
   public static async updateById(req: Request, res: Response): Promise<void> {

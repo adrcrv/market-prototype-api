@@ -68,7 +68,7 @@ describe('ClientRepository update by id', (): void => {
   });
 });
 
-describe('ClientRepository update by id', (): void => {
+describe('ClientRepository delete by id', (): void => {
   test('Expect deleteById to equal a 1', async (): Promise<void> => {
     const clientRepository: ClientRepository = new ClientRepository();
     const inputId: number = clientMock2.id;

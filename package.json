@@ -15,16 +15,16 @@
   },
   "jest": {
     "testMatch": [
-      "./src/tests/**/*.[jt]s?(x)",
-      "**/?(*.)+(spec|test).[jt]s?(x)"
+      "<rootDir>/src/tests/app/**/?(*.)+(spec|test).[jt]s?(x)"
     ],
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "./src/app/**/*.{js,ts}"
+      "<rootDir>/src/app/**/*.{js,ts}"
     ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "./src/app/router"
+      "./src/app/router",
+      "./src/app/interface"
     ]
   },
   "dependencies": {

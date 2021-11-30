@@ -48,7 +48,7 @@ describe('ProductRepository create', (): void => {
   });
 });
 
-describe('ProductRepository update by id', (): void => {
+describe('ProductRepository update', (): void => {
   test('Expect update to equal a product', async (): Promise<void> => {
     const productRepository: ProductRepository = new ProductRepository();
     const inputId: number = productMock2.id;
@@ -68,7 +68,7 @@ describe('ProductRepository update by id', (): void => {
   });
 });
 
-describe('ProductRepository update by id', (): void => {
+describe('ProductRepository delete', (): void => {
   test('Expect deleteById to equal a 1', async (): Promise<void> => {
     const productRepository: ProductRepository = new ProductRepository();
     const inputId: number = productMock2.id;
