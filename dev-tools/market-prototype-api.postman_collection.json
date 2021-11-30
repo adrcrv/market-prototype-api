@@ -1,0 +1,387 @@
+{
+	"info": {
+		"_postman_id": "d49591f3-5ef8-4d20-b9f0-d19ae229c3d0",
+		"name": "market-prototype-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "clients",
+			"item": [
+				{
+					"name": "http://localhost:6540/api/clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6540/api/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6540/api/clients/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6540/api/clients/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6540/api/clients/1",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"gender\": \"66\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6540/api/clients/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6540/api/clients/1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6540/api/clients/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6540/api/clients",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Fofão\",\n    \"gender\": \"33\",\n    \"email\": \"fofao@carretafuracao.com.br\",\n    \"legalId\": \"999.999.999-99\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6540/api/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "http://localhost:6540/api/products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6540/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6540/api/products/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6540/api/products/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6540/api/products/1",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"price\": 99.99\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6540/api/products/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6540/api/products/1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6540/api/products/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6540/api/products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Kit Primeiro Socorros\",\n    \"color\": \"N/A\",\n    \"size\": \"6x9 cm\",\n    \"price\": 49.99\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6540/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "purchase",
+			"item": [
+				{
+					"name": "http://localhost:6540/api/purchases",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6540/api/purchases",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"purchases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6540/api/purchases/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6540/api/purchases/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"purchases",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6540/api/purchases/1",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"paymentMethod\": \"Credit Card\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6540/api/purchases/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"purchases",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6540/api/purchases/1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6540/api/purchases/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"purchases",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6540/api/purchases",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clientId\": 1,\n    \"product\": {\n        \"id\": 1,\n        \"quantity\": 1\n    },\n    \"paymentMethod\": \"Cash\",\n    \"note\": \"Hurry Up!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6540/api/purchases",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6540",
+							"path": [
+								"api",
+								"purchases"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

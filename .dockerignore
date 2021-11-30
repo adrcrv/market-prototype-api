@@ -1,0 +1,12 @@
+# IDE
+.idea/
+/coverage
+
+# MISC
+yarn-error.log
+
+# Database
+/data
+
+# Build
+/dist
