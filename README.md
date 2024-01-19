@@ -1,7 +1,7 @@
+[![Continuous Integration](https://github.com/adrcrv/market-prototype-api/actions/workflows/main.yml/badge.svg)](https://github.com/adrcrv/market-prototype-api/actions/workflows/main.yml)
+
 ## 🛍️ Market Prototype Api
 This is a simple Market Prototype Api Project developed with NodeJS and Typescript.
-
-[![Continuous Integration](https://github.com/adrcrv/market-prototype-api/actions/workflows/main.yml/badge.svg)](https://github.com/adrcrv/market-prototype-api/actions/workflows/main.yml)
 
 ## 🛠 Requirements
 [Node.JS](https://nodejs.org/en/download/)  
